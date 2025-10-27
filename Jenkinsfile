@@ -13,6 +13,7 @@ pipeline {
        stage('Build') {
             environment {
                 LOG_LEVEL = 'INFO'
+                MAIL = 'jfrecio@gmail.com'
             }
             steps {
                 echo "Building release ${RELEASE} with log level ${LOG_LEVEL} ..."
@@ -51,10 +52,10 @@ pipeline {
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
 
-            sendMailSuccess()
+            sendMailSuccess mail: ${MAIL}
         }
         failure {
-            sendMailFailure()
+            sendMailFailure mail: ${MAIL}
         }
     }
 }
