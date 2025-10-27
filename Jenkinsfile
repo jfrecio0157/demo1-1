@@ -52,10 +52,10 @@ pipeline {
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
 
-            sendMailSuccess mail: ${MAIL}
+            sendMailSuccess mail: "${MAIL}"
         }
         failure {
-            sendMailFailure mail: ${MAIL}
+            sendMailFailure mail: "${MAIL}"
         }
     }
 }
