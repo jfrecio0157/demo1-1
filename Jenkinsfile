@@ -1,5 +1,5 @@
 //Library común
-//Métodos que contiene: auditTools
+//Métodos que contiene: auditTools, sendMailSuccess, sendMailFailure
 library identifier: 'jenkins-demo-library.git@main',
         retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/jfrecio0157/jenkins-demo-library.git'])
 
@@ -58,18 +58,3 @@ pipeline {
         }
     }
 }
-
-
-void sendMailSuccess () {
-   echo "Envio correo Success"
-   mail to: 'jfrecio@gmail.com',
-   subject: "Build Exitosa: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-   body: "La build ha sido exitosa. Ver detalles en ${env.BUILD_URL}"
-}
-
-void sendMailFailure() {
-    echo "Envio correo Failure"
-    mail to: 'jfrecio@gmail.com',
-    subject: "Build Fallida: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-    body: "La build ha fallado. Revisa Jenkins en ${env.BUILD_URL}"
- }
