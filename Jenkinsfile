@@ -8,12 +8,12 @@ pipeline {
 
     environment {
         RELEASE = '20.04'
+        MAIL = 'jfrecio@gmail.com'
     }
     stages {
        stage('Build') {
             environment {
                 LOG_LEVEL = 'INFO'
-                MAIL = 'jfrecio@gmail.com'
             }
             steps {
                 echo "Building release ${RELEASE} with log level ${LOG_LEVEL} ..."
