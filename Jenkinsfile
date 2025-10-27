@@ -18,14 +18,18 @@ pipeline {
             steps {
                   echo "Testing release ${RELEASE}"
                   writeFile file: 'test-results.txt', text: 'passed'
+                  //Guardar el archivo al final del paso Test
+                  stash includes: 'test-results.txt', name: 'testResult'
             }
         }
     }
 
     post {
         success {
-            echo "Step post release ${release}"
-            //archiveArtifact 'test-results.txt'
+            //Recuperar el archivo
+            unstash 'testResult'
+            echo "Step post release ${RELEASE}"
+            archiveArtifact artifacts: 'test-results.txt'
         }
     }
 }
