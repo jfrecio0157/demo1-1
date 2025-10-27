@@ -39,6 +39,14 @@ pipeline {
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
 
+            mail to: 'jfrecio@gmail.com',
+                 subject: "Build Exitosa: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "La build ha sido exitosa. Ver detalles en ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'jfrecio@gmail.com',
+                 subject: "Build Fallida: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "La build ha fallado. Revisa Jenkins en ${env.BUILD_URL}"
         }
     }
 }
