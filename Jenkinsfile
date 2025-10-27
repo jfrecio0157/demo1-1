@@ -12,8 +12,10 @@ pipeline {
             steps {
                 echo "Building release ${RELEASE} with log level ${LOG_LEVEL} ..."
                 bat 'chmod +x m2/demo1-1/build.sh'
-                withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER, passwordVariable: 'GIT_PASS')]) {
-                sh ''' .m2/demo1-1/build.sh '''}
+                withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                sh '''
+                ./m2/demo1-1/build.sh
+                '''
             }
         }
 
