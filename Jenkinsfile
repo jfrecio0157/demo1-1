@@ -28,8 +28,8 @@ pipeline {
                   stash includes: 'test-results.txt', name: 'testResult'
             }
         }
-       }
     }
+
     post {
         success {
             //Recuperar el archivo
