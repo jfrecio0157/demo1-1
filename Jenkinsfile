@@ -1,3 +1,8 @@
+//Library común
+//Métodos que contiene: auditTools
+library identifier: 'jenkins-demo-library.git@main',
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/jfrecio0157/jenkins-demo-library.git'])
+
 pipeline {
     agent any
 
@@ -54,13 +59,6 @@ pipeline {
     }
 }
 
-void auditTools () {
-   echo "Verificando herramientas instaladas..."
-   echo "Version java: "
-   bat 'java -version'
-   echo "Version git: "
-   bat ' git --version'
-}
 
 void sendMailSuccess () {
    echo "Envio correo Success"
