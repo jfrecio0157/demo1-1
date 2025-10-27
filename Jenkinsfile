@@ -16,6 +16,7 @@ pipeline {
                 sh '''
                 ./m2/demo1-1/build.sh
                 '''
+                }
             }
         }
 
