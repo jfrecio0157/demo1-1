@@ -51,11 +51,14 @@ pipeline {
             unstash 'testResult'
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
-
-            sendMail.success (mail: "${MAIL}")
+            script{
+                sendMail.success (mail: "${MAIL}")
+                }
         }
         failure {
-            sendMail.failure (mail: "${MAIL}")
+            script{
+                sendMail.failure (mail: "${MAIL}")
+                }
         }
     }
 }
