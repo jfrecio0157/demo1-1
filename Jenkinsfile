@@ -30,6 +30,13 @@ pipeline {
                   stash includes: 'test-results.txt', name: 'testResult'
             }
         }
+
+        stage('Audit Tools'){
+            steps {
+                echo "Audit Tools"
+                auditTools()
+            }
+        }
     }
 
     post {
@@ -49,4 +56,12 @@ pipeline {
                  body: "La build ha fallado. Revisa Jenkins en ${env.BUILD_URL}"
         }
     }
+}
+
+void auditTools () {
+   echo "Verificando herramientas instaladas..."
+   echo "Version java: "
+   bat 'java -version'
+   echo "Version git: "
+   bat ' git --version'
 }
