@@ -20,6 +20,11 @@ pipeline {
         stage('Test') {
             steps {
                   echo "Testing release ${RELEASE}"
+                  script {
+                    if Math.random () > 0.5 {
+                        throw new Exception}
+                  }
+
                   writeFile file: 'test-results.txt', text: 'passed'
                   //Guardar el archivo al final del paso Test
                   stash includes: 'test-results.txt', name: 'testResult'
