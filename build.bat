@@ -1,8 +1,7 @@
-#!/bin/bash
 
 :: Mostrar mensaje de inicio
-echo "usuario Git: ${GIT_USER}"
-echo "password Git: ${GIT_PASS}"
+echo "usuario Git: " %GIT_USER%
+echo "password Git: " %GIT_PASS%
 
 echo "Iniciando proceso de construcción..."
 
