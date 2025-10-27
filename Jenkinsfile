@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         RELEASE = '20.04'
-        USER-MAIL = 'jfrecio@gmail.com'
+        MAIL = 'jfrecio@gmail.com'
     }
     stages {
        stage('Build') {
@@ -47,10 +47,10 @@ pipeline {
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
 
-            sendMailSuccess(${USER-MAIL})
+            sendMailSuccess(${MAIL})
         }
         failure {
-            sendMailFailure(${USER-MAIL})
+            sendMailFailure(${MAIL})
         }
     }
 }
