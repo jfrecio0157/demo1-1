@@ -29,7 +29,7 @@ pipeline {
             //Recuperar el archivo
             unstash 'testResult'
             echo "Step post release ${RELEASE}"
-            archiveArtifact artifacts: 'test-results.txt'
+            archiveArtifacts artifacts: 'test-results.txt'
         }
     }
 }
