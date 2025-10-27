@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         RELEASE = '20.04'
+        USER-MAIL = 'jfrecio@gmail.com'
     }
     stages {
        stage('Build') {
@@ -46,14 +47,10 @@ pipeline {
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
 
-            mail to: 'jfrecio@gmail.com',
-                 subject: "Build Exitosa: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "La build ha sido exitosa. Ver detalles en ${env.BUILD_URL}"
+            sendMailSuccess(${USER-MAIL})
         }
         failure {
-            mail to: 'jfrecio@gmail.com',
-                 subject: "Build Fallida: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "La build ha fallado. Revisa Jenkins en ${env.BUILD_URL}"
+            sendMailFailure(${USER-MAIL})
         }
     }
 }
@@ -65,3 +62,17 @@ void auditTools () {
    echo "Version git: "
    bat ' git --version'
 }
+
+void sendMailSuccess (String userMail) {
+   echo "Envio correo Success"
+   mail to: userMail,
+   subject: "Build Exitosa: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+   body: "La build ha sido exitosa. Ver detalles en ${env.BUILD_URL}"
+}
+
+void sendMailFailure(String userMail) {
+    echo "Envio correo Failure"
+    mail to: userMail,
+    subject: "Build Fallida: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    body: "La build ha fallado. Revisa Jenkins en ${env.BUILD_URL}"
+ }
