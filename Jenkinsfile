@@ -1,5 +1,5 @@
 //Library común
-//Métodos que contiene: auditTools, sendMailSuccess, sendMailFailure
+//Métodos que contiene: auditTools, sendMail
 library identifier: 'jenkins-demo-library.git@main',
         retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/jfrecio0157/jenkins-demo-library.git'])
 
@@ -52,10 +52,10 @@ pipeline {
             echo "Step post release ${RELEASE}"
             archiveArtifacts artifacts: 'test-results.txt'
 
-            sendMailSuccess (mail: "${MAIL}")
+            sendMail.success (mail: "${MAIL}")
         }
         failure {
-            sendMailFailure (mail: "${MAIL}")
+            sendMail.failure (mail: "${MAIL}")
         }
     }
 }
