@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building release ${RELEASE} with log level ${LOG_LEVEL} ..."
                 withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                bat '.m2\\demo1-1\\build.bat'
+                bat 'build.bat'
                 }
             }
         }
