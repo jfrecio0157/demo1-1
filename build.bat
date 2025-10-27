@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Mostrar mensaje de inicio
+echo "usuario Git: $GIT_USER"
+echo "password Git: $GIT_PASS"
+
+echo "🔧 Iniciando proceso de construcción..."
+
+# Simular compilación
+echo "📦 Compilando el proyecto..."
+sleep 1
+
+# Simular ejecución de pruebas
+echo "🧪 Ejecutando pruebas..."
+sleep 1
+echo "✅ Todas las pruebas han pasado correctamente."
+
+# Mensaje final
+echo "🎉 Construcción finalizada con éxito."
