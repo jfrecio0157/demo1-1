@@ -24,7 +24,8 @@ pipeline {
 
     post {
         success {
-            archiveArtifact 'test-results.txt'
+            echo "Step post release ${release}"
+            //archiveArtifact 'test-results.txt'
         }
     }
 }
