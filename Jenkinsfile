@@ -50,7 +50,6 @@ pipeline {
                 steps {
                     echo "Solo ejecuto en branch main"
                 }
-            }
         }
     }
 
