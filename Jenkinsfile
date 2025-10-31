@@ -24,7 +24,7 @@ pipeline {
         }
 
         stage('Test'){
-            when { expression {env.BRANCH_NAME == 'main' || env.BRANCH.NAME = 'brV01R00F00'}}
+            when { expression {env.BRANCH_NAME == 'main' || env.BRANCH.NAME == 'brV01R00F00'}}
             steps{
                 echo "Testing release ${RELEASE}"
                 //Para brV01R00F00 el resultado de los test es aleatorio
