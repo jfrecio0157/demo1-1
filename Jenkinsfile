@@ -22,6 +22,7 @@ pipeline {
                 LOG_LEVEL = 'INFO'
             }
             steps {
+                echo "branch:  ${params.BRANCH}"
                 echo "Building release ${RELEASE} with log level ${LOG_LEVEL} ..."
                 withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                 bat 'build.bat'
@@ -37,6 +38,7 @@ pipeline {
                 //Para brV01R00F00 el resultado de los test es aleatorio
                     if (params.BRANCH == 'brV01R00F00') {
                         script {
+                          echo "Dentro del script de Test"
                           if (Math.random () > 0.5) {
                             throw new Exception() }
                         }
