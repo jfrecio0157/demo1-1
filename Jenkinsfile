@@ -9,6 +9,7 @@ pipeline {
     environment {
         RELEASE = '20.04'
         MAIL = 'jfrecio@gmail.com'
+        BRANCH_NAME = "${env.GIT_BRANCH}"
     }
     stages {
        stage('Build') {
@@ -24,7 +25,7 @@ pipeline {
         }
 
         stage('Test'){
-            when { expression {env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'brV01R00F00'}}
+            when { expression {${BRANCH_NAME} == 'main' || ${BRANCH_NAME} == 'brV01R00F00'}}
             steps{
                 echo "Testing release ${RELEASE}"
                 script{
