@@ -15,12 +15,18 @@ pipeline {
         MAIL = 'jfrecio@gmail.com'
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: "${params.BRANCH}", url: 'https://github.com/tu-usuario/tu-repo.git'
+            }
+        }
+
        stage('Build') {
             environment {
                 LOG_LEVEL = 'INFO'
             }
             steps {
-                echo "branch:  ${params.BRANCH}"
+                echo "Construyendo la Branch:  ${params.BRANCH}"
                 echo "Building release ${RELEASE} with log level ${LOG_LEVEL} ..."
                 withCredentials([usernamePassword(credentialsId: 'github-creds', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                 bat 'build.bat'
