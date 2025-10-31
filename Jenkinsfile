@@ -6,10 +6,9 @@ library identifier: 'jenkins-demo-library.git@main',
 pipeline {
     agent any
 
-    //No es necesario declararla ya que esta definida en la propia configuracion del Jenkins
-    //parameters {
-    //    string(name: 'BRANCH', defaultValue: 'main', description: 'Nombre de la branch a construir')
-    //}
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'main', description: 'Nombre de la branch a construir')
+    }
 
 
     environment {
