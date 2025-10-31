@@ -43,6 +43,15 @@ pipeline {
                 auditTools()
             }
         }
+
+        //Con when delimito cuando se va a ejecutar este stage
+        stage('Run on Main'){
+            when {branch 'main'}
+                steps {
+                    echo "Solo ejecuto en branch main"
+                }
+            }
+        }
     }
 
     post {
