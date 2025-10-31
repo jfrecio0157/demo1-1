@@ -58,7 +58,7 @@ pipeline {
 
         //Con when delimito cuando se va a ejecutar este stage
         stage('Run on Main'){
-            when {params.BRANCH == 'main'}
+            when {expression { params.BRANCH == 'main' }
                 steps {
                     echo "Solo ejecuto en branch main"
                 }
