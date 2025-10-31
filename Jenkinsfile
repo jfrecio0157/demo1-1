@@ -30,7 +30,12 @@ pipeline {
         }
 
         stage('Test'){
-            when { expression {params.BRANCH == 'main' || params.BRANCH == 'brV01R00F00'}}
+            when {
+                anyOf {
+                    expression { params.BRANCH == 'main' }
+                    expression { params.BRANCH == 'brV01R00F00' }
+                }
+            }
             steps{
                 echo "Testing release ${RELEASE} en branch ${params.BRANCH}"
                 script{
