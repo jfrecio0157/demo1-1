@@ -1,7 +1,6 @@
 //Library común
 //Métodos que contiene: auditTools, sendMail
-library identifier: 'jenkins-demo-library.git@main',
-        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/jfrecio0157/jenkins-demo-library.git'])
+@Library('jenkins-demo-library') _
 
 pipeline {
     agent any
