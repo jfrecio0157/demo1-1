@@ -6,10 +6,13 @@ library identifier: 'jenkins-demo-library.git@main',
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'main', description: 'Nombre de la branch a construir')
+    }
+
     environment {
         RELEASE = '20.04'
         MAIL = 'jfrecio@gmail.com'
-        BRANCH_NAME = "${env.GIT_BRANCH}"
     }
     stages {
        stage('Build') {
@@ -25,12 +28,12 @@ pipeline {
         }
 
         stage('Test'){
-            when { expression {${BRANCH_NAME} == 'main' || ${BRANCH_NAME} == 'brV01R00F00'}}
+            when { expression {params.BRANCH == 'main' || params.BRANCH == 'brV01R00F00'}}
             steps{
-                echo "Testing release ${RELEASE}"
+                echo "Testing release ${RELEASE} en branch ${params.BRANCH}"
                 script{
                 //Para brV01R00F00 el resultado de los test es aleatorio
-                    if (env.BRANCH_NAME == 'brV01R00F00') {
+                    if (params.BRANCH == 'brV01R00F00') {
                         script {
                           if (Math.random () > 0.5) {
                             throw new Exception() }
