@@ -27,17 +27,19 @@ pipeline {
             when { expression {env.BRANCH_NAME == 'main' || env.BRANCH.NAME == 'brV01R00F00'}}
             steps{
                 echo "Testing release ${RELEASE}"
+                script{
                 //Para brV01R00F00 el resultado de los test es aleatorio
-                if (env.BRANCH_NAME == 'brV01R00F00') {
-                    script {
-                      if (Math.random () > 0.5) {
-                        throw new Exception() }
+                    if (env.BRANCH_NAME == 'brV01R00F00') {
+                        script {
+                          if (Math.random () > 0.5) {
+                            throw new Exception() }
+                        }
                     }
-                }
 
-                writeFile file: 'test-results.txt', text: 'passed'
-                //Guardar el archivo al final del paso Test
-                stash includes: 'test-results.txt', name: 'testResult'
+                    writeFile file: 'test-results.txt', text: 'passed'
+                    //Guardar el archivo al final del paso Test
+                    stash includes: 'test-results.txt', name: 'testResult'
+                }
             }
         }
 
