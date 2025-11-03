@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: "${params.BRANCH}", url: 'https://github.com/tu-usuario/tu-repo.git'
+                git branch: "${params.BRANCH}", url: 'https://github.com/jfrecio0157/demo1-1.git'
             }
         }
 
